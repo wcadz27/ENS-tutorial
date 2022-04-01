@@ -11,7 +11,7 @@ export default function Home() {
   const [ens, setENS] = useState("");
   const [address, setAddress] = useState("");
 
-  const setENSOrAddress = async(address, web3Provider) => {
+  const setENSOrAddress = async (address, web3Provider) => {
     var _ens = await web3Provider.lookupAddress(address);
     if (_ens) {
       setENS(_ens);
@@ -69,6 +69,31 @@ export default function Home() {
     }
   }, [walletConnected]);
 
+  return (
+    <div>
+      <Head>
+        <title>ENS dApp</title>
+        <meta name="description" content="ENS-dApp" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <div className={styles.main}>
+        <div>
+          <h1 className={styles.title}>
+            Welcome to LearnWeb3 Punks {ens ? ens : address}!
+          </h1>
+          <div className={styles.description}>
+            It&apos;s an NFT collection for LearnWeb3 Punks.
+          </div>
+          {renderButton()}
+        </div>
+        <div>
+          <img className={styles.image} src="./learnweb3punks.png" />
+        </div>
+      </div>
 
+      <footer className={styles.footer}>
+        Made with &#10084; by LearnWeb3 Punks
+      </footer>
+    </div>
+  );
 }
-
